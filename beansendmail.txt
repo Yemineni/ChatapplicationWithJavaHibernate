@@ -1,0 +1,40 @@
+package com.pilog;
+import javax.mail.MessagingException;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+
+@Controller
+public class TestingController {
+    @Autowired
+    private MailLogic ml;
+    @RequestMapping("redirect")
+    public String getIndex(@RequestParam("uname")String uname,@RequestParam("password")String pwd ){
+     
+        if(uname.equals(pwd))
+        {
+               System.out.println("com.pilog.TestingController.getIndex()"+uname+"::"+pwd);
+        return "index";
+        }
+        else 
+        {
+            return "redirect";
+        }
+    
+    }
+    
+@RequestMapping("/saveData")
+public String sendMail(String email,Double monthly, Integer policyNumber, Double downpayment, Double balance  ) throws MessagingException{
+String body="";
+    body="<b>Hello  Kiran,</b><br><br><p> Your Remaining Amount Successfuly Converted As EMI <br>Please Fine the Details<br>"+
+             "Total Amount:"+(downpayment+balance)+"<br>DownPayment:"+downpayment;
+           ml.sendM("srinivasyemineni@gmail.com", email , "Greeting", body);
+ return "success";
+ 
+    }
+    
+    
+}

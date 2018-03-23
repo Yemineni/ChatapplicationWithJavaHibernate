@@ -1,0 +1,84 @@
+<%--
+Views should be stored under the WEB-INF folder so that
+they are not accessible except through controller process.
+
+This JSP is here to provide a redirect to the dispatcher
+servlet but should be the only JSP outside of WEB-INF.
+--%>
+<html>
+    <head>
+        <title>Interceptor test</title>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <style>
+
+            div.login {
+
+                width:25%;
+                margin:0 auto;
+                background-color:#999;
+                border:1px solid #0071c5;
+                position: absolute;
+                top: 40%;
+                right: 0;
+                left: 0;
+                bottom: 40%;
+            }
+
+        </style>
+        
+        <script>
+            $(document).ready(function () {
+                $("#submit").on('click', function () {
+                
+                 var uname,password;
+                 
+                 uname=$("#uname").val();
+                  password=$("#password").val();
+                 
+        if(uname==='' || password===''){
+            
+            alert('Please Give the Values');
+            return false;
+        }
+        
+        if(uname.length>3 ||  password.length>3){
+            
+            alert('uname & password must be  above 3  letters');
+            return false;
+        }
+                    
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <div class="login">
+            <table >
+                <form action="redirect.htm" method="post" >
+                <tr><td colspan="2"> <h3> Login Here</h3> </td></tr>
+                <tr><td>Uname</td><td> <input type="text" id="uname" name="uname"></td></tr>
+                <tr><td>Password</td><td> <input type="password" id="password" name="password"></td></tr>
+                <tr><td colspan="2"> <input type="submit" id="submit" value="SUBMIT"> </td></tr>
+                </form>
+            </table>
+<!--
+                <tr>
+
+                <div class="container-login100-form-btn">
+                    <div class="wrap-login100-form-btn">
+                        <div class="login100-form-bgbtn"></div>
+                        <button class="login100-form-btn">
+                            Login
+                        </button>
+                    </div>
+                </div>
+
+                </tr>-->
+        </div>    
+
+    </body>    
+
+
+</html>
+
+
